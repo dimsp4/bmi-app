@@ -10,25 +10,38 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        leading: IconButton(
-          iconSize: 30,
-          padding: EdgeInsets.all(20),
-          icon: Icon(Icons.list),
-          onPressed: () {},
-        ),
-        actions: [
-          Container(
-              child: IconButton(
+        leading: Builder(
+          builder: (context) => IconButton(
             iconSize: 30,
             padding: EdgeInsets.all(20),
-            icon: Icon(Icons.notifications),
-            onPressed: () {},
-          )),
-        ],
+            icon: Icon(Icons.help),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+          ),
+        ),
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
       ),
       body: Body(),
+      drawer: Drawer(
+        backgroundColor: Colors.black,
+        child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.all(15),
+              alignment: Alignment.bottomLeft,
+              width: double.infinity,
+              height: 150,
+              color: Colors.red,
+              child: Text(
+                "Menu",
+                style: TextStyle(fontSize: 25, color: Colors.white),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

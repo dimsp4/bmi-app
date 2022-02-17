@@ -18,6 +18,8 @@ class _BodyState extends State<Body> {
   int currentIndex = 0;
   late double hasil;
   late String kondisi;
+  late Color color;
+  late String info;
 
   @override
   Widget build(BuildContext context) {
@@ -103,12 +105,23 @@ class _BodyState extends State<Body> {
                           double.parse(heightController.text));
                   if (hasil <= 18.5) {
                     kondisi = "Berat badan kurang";
+                    color = Colors.amber;
+                    info = "(BMI under 18.5)";
                   } else if (hasil >= 18.6 && hasil <= 22.9) {
                     kondisi = "Berat badan normal";
+                    color = Colors.green;
+                    info = "(BMI 18.6 to 22.9)";
                   } else if (hasil >= 23 && hasil <= 29.9) {
                     kondisi = "Berat badan berlebih (cenderung obesitas)";
-                  } else {
+                    color = Colors.amber;
+                    info = "(BMI 23 to 29.9)";
+                  } else if (hasil >= 30) {
                     kondisi = "Berat badan obesitas";
+                    color = Colors.red;
+                    info = "(BMI above 30)";
+                  } else {
+                    kondisi = "Berat badan belum ditentukan";
+                    color = Colors.white;
                   }
                 } else {
                   hasil = double.parse(weightController.text) /
@@ -116,19 +129,32 @@ class _BodyState extends State<Body> {
                           double.parse(heightController.text));
                   if (hasil <= 18.5) {
                     kondisi = "Berat badan kurang";
+                    color = Colors.amber;
+                    info = "(BMI under 18.5)";
                   } else if (hasil >= 18.6 && hasil <= 25) {
                     kondisi = "Berat badan normal";
+                    color = Colors.green;
+                    info = "(BMI 18.6 to 25)";
                   } else if (hasil >= 25.1 && hasil <= 27) {
                     kondisi = "Berat badan berlebih (cenderung obesitas)";
-                  } else {
+                    color = Colors.amber;
+                    info = "(BMI 25.1 to 27)";
+                  } else if (hasil >= 28) {
                     kondisi = "Berat badan obesitas";
+                    color = Colors.red;
+                    info = "(BMI above 28)";
+                  } else {
+                    kondisi = "Berat badan belum ditentukan";
+                    color = Colors.white;
                   }
                 }
-                
+
                 await Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => Result(
                           value: kondisi,
                           valueNumber: hasil.toStringAsFixed(1),
+                          color: color,
+                          valueInfo: info,
                         )));
 
                 hasil = 0;
