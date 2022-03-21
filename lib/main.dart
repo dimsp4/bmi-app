@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        fontFamily: 'SFRounded',
         textTheme: TextTheme(
           bodyText1: TextStyle(),
           bodyText2: TextStyle(),
